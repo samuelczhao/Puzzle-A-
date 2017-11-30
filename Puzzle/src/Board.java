@@ -1,18 +1,35 @@
 public class Board 
 {    
+	int[][] blocks;
+	int dimension;
+	
 	public Board(int[][] blocks)
 	{
-		throw new UnsupportedOperationException(); //
+		this.blocks = blocks;
+		dimension = blocks.length;
 	}
 
 	public int dimension()
 	{
-		throw new UnsupportedOperationException();
+		return dimension;
 	}
 
 	public int hamming()
 	{
-		throw new UnsupportedOperationException();
+		int count = 0;
+		
+		for (int i = 0; i < dimension; i++)
+		{
+			for(int j = 0; j < dimension; j++)
+			{
+				if (blocks[i][j] != end(i, j))
+				{
+					count++;
+				}
+			}
+		}
+		
+		return count;
 	}
 
 	public int manhattan()
@@ -57,5 +74,15 @@ public class Board
 		}
 		return s.toString();
 		*/
+	}
+	
+	private int end(int m, int n)
+	{
+		if (m == dimension - 1 && n == dimension - 1)
+		{
+			return 0;
+		}
+		
+		return dimension * m + n + 1;
 	}
 }
