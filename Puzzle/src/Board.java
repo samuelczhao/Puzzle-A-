@@ -22,12 +22,13 @@ public class Board
 		{
 			for(int j = 0; j < dimension; j++)
 			{
-				if (blocks[i][j] == end(i, j))
+				if (blocks[i][j] != 0)
 				{
-					break;
+					if (blocks[i][j] != end(i, j))
+					{
+						count++;
+					}
 				}
-				
-				count++;
 			}
 		}
 		
