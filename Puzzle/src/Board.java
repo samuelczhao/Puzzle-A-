@@ -42,7 +42,18 @@ public class Board
 
 	public boolean isGoal()
 	{
-		throw new UnsupportedOperationException();
+		for (int i = 0; i < dimension; i++)
+		{
+			for(int j = 0; j < dimension; j++)
+			{
+				if (blocks[i][j] != end(i, j))
+				{
+					return false;
+				}
+			}
+		}
+		
+		return true;
 	}
 
 	public Board twin()
