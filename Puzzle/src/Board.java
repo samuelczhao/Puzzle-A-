@@ -83,6 +83,11 @@ public class Board
 	
 	public boolean equals(Object y)
 	{
+		if (!(y instanceof Board))
+		{
+			return false;
+		}
+		
 		Board newBoard = (Board)y;
 		
 		for (int i = 0; i < dimension; i++)
