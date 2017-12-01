@@ -81,6 +81,24 @@ public class Board
 		return s.toString();
 	}
 	
+	public boolean equals(Object y)
+	{
+		Board newBoard = (Board)y;
+		
+		for (int i = 0; i < dimension; i++)
+		{
+			for(int j = 0; j < dimension; j++)
+			{
+				if (blocks[i][j] != newBoard.blocks[i][j])
+				{
+					return false;
+				}
+			}
+		}
+		
+		return true;
+	}
+	
 	private int end(int m, int n)
 	{
 		if (m == dimension - 1 && n == dimension - 1)
