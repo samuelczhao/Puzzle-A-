@@ -54,26 +54,17 @@ public class Board
 
 	public String toString()
 	{
-		throw new UnsupportedOperationException();
-		
-		// To implement this method, remove the throw above,
-		// uncomment the code below, and change the
-		// names of any fields to match what you're
-		// storing in your Board class
-		
-		/*
 		StringBuilder s = new StringBuilder();
-		s.append(length + "\n");
-		for (int i = 0; i < length; i++) 
+		s.append(dimension + "\n");
+		for (int i = 0; i < dimension; i++) 
 		{
-			for (int j = 0; j < length; j++) 
+			for (int j = 0; j < dimension; j++) 
 			{
-				s.append(String.format("%2d ", (int) tiles[i][j]));
+				s.append(String.format("%2d ", (int) blocks[i][j]));
 			}
 			s.append("\n");
 		}
 		return s.toString();
-		*/
 	}
 	
 	private int end(int m, int n)
