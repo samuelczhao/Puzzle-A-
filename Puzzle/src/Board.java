@@ -29,7 +29,7 @@ public class Board
 			}
 		}
 		
-		return count;
+		return count - 1;
 	}
 
 	public int manhattan()
