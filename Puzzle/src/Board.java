@@ -74,6 +74,6 @@ public class Board
 			return 0;
 		}
 		
-		return dimension * m + n + 1;
+		return dimension * m + n;
 	}
 }
