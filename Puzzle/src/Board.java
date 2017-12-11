@@ -37,7 +37,13 @@ public class Board
 
 	public int manhattan()
 	{
-		throw new UnsupportedOperationException();
+		for (int i = 0; i < )
+		{
+			for()
+			{
+				
+			}
+		}
 	}
 
 	public boolean isGoal()
