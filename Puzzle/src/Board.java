@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Board 
 {    
 	int[][] blocks;
@@ -67,40 +69,29 @@ public class Board
 	}
 
 	public Board twin()
-	{
-		int[][] twin = new int[dimension][dimension];
-		
-		for (int i = 0; i < dimension; i++)
-		{
-			for (int j = 0; j < dimension; j++)
-			{
-				twin[i][j] = blocks[i][j];
-			}	
-		}
-		
-		
+	{	
 		for (int i = 0; i < dimension; i++)
 		{
 			for (int j = 0; j < dimension - 1; j++)
 			{
 				if (blocks[i][j] != 0 && blocks[i][j + 1] != 0)
 				{
-					int temp = twin[i][j + 1];
-					
-					twin[i][j + 1] = twin[i][j];
-					twin[i][j] = temp;
-					
-					return new Board(twin);
+					return new Board(swap(i, j, i, j + 1));
 				}
 			}
 		}
 		
-		return new Board(twin);
+		return null;
 	}
 
 	public Iterable<Board> neighbors()
 	{
-		throw new UnsupportedOperationException();
+		ArrayList<Board> neighbors = new ArrayList<Board>();
+		
+		
+		
+		
+		return neighbors;
 	}
 
 	public String toString()
@@ -164,5 +155,24 @@ public class Board
 		}
 		
 		return 0;
+	}
+	
+	private int[][] swap(int a, int b, int c, int d)
+	{
+		int [][] thing = new int[dimension][dimension];
+		for (int i = 0; i < dimension; i++)
+		{
+			for (int j = 0; j < dimension; j++)
+			{
+				thing[i][j] = blocks[i][j];
+			}	
+		}
+		
+		int temp = thing[a][b];
+		
+		thing[a][b] = thing[c][d];
+		thing[c][d] = temp;
+		
+		return thing;
 	}
 }
