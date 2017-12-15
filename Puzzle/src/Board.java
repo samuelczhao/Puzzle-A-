@@ -2,22 +2,22 @@ import java.util.ArrayList;
 
 public class Board 
 {    
-	int[][] blocks;
 	int dimension;
+	int[][] blocks;
 	
-	public Board(int[][] blocksssss)
+	public Board(int[][] blocksss)
 	{
-		int[][] blocks = new int[blocksssss.length][blocksssss.length];
-		
-		for (int i = 0; i < blocks.length; i++)
-		{
-			for (int j = 0; j < blocks.length; j++)
-			{
-				this.blocks[i][j] = blocksssss[i][j];
-			}	
-		}
-		
 		dimension = blocks.length;
+		
+		blocks = new int[blocksss.length][blocksss.length];
+		
+		for (int i = 0; i < dimension; i++)
+		{
+			for(int j = 0; j < dimension; j++)
+			{
+				blocks[i][j] = blocksss[i][j];
+			}
+		}
 	}
 
 	public int dimension()
