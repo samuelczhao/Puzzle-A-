@@ -7,9 +7,10 @@ public class Board
 	
 	public Board(int[][] blocksss)
 	{
+		blocks = blocksss;
 		dimension = blocks.length;
 		
-		blocks = new int[dimension][dimension];
+		/*blocks = new int[dimension][dimension];
 		
 		for (int i = 0; i < dimension; i++)
 		{
@@ -17,7 +18,7 @@ public class Board
 			{
 				blocks[i][j] = blocksss[i][j];
 			}
-		}
+		}*/
 	}
 
 	public int dimension()
