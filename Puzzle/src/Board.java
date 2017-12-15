@@ -136,6 +136,6 @@ public class Board
 			return Math.abs(m - row) + Math.abs(n - column);
 		}
 		
-		return Math.abs(m - 3) + Math.abs(n - 3);
+		return Math.abs(m - 2) + Math.abs(n - 2);
 	}
 }
