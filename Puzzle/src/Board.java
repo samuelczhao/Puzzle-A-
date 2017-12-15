@@ -88,8 +88,28 @@ public class Board
 	{
 		ArrayList<Board> neighbors = new ArrayList<Board>();
 		
+		int blankRow = blankRow();
+		int blankColumn = blankColumn();
 		
+		if (blankRow > 0)
+		{
+			neighbors.add(new Board(swap(blankRow, blankColumn, blankRow - 1, blankColumn)));
+		}
 		
+		if (blankRow < dimension - 1)
+		{
+			neighbors.add(new Board(swap(blankRow, blankColumn, blankRow + 1, blankColumn)));
+		}
+		
+		if (blankColumn > 0)
+		{
+			neighbors.add(new Board(swap(blankRow, blankColumn, blankRow, blankColumn - 1)));
+		}
+		
+		if (blankColumn < dimension - 1)
+		{
+			neighbors.add(new Board(swap(blankRow, blankColumn, blankRow, blankColumn + 1)));
+		}
 		
 		return neighbors;
 	}
@@ -174,5 +194,37 @@ public class Board
 		thing[c][d] = temp;
 		
 		return thing;
+	}
+	
+	private int blankRow()
+	{
+		for (int i = 0; i < dimension; i++)
+		{
+			for (int j = 0; j < dimension; j++)
+			{
+				if (blocks[i][j] == 0)
+				{
+					return i;
+				}
+			}
+		}
+		
+		return 0;
+	}
+	
+	private int blankColumn()
+	{
+		for (int i = 0; i < dimension; i++)
+		{
+			for (int j = 0; j < dimension; j++)
+			{
+				if (blocks[i][j] == 0)
+				{
+					return j;
+				}
+			}
+		}
+		
+		return 0;
 	}
 }
