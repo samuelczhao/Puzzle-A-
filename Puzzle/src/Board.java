@@ -9,7 +9,7 @@ public class Board
 	{
 		dimension = blocks.length;
 		
-		blocks = new int[blocksss.length][blocksss.length];
+		blocks = new int[dimension][dimension];
 		
 		for (int i = 0; i < dimension; i++)
 		{
