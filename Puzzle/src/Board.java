@@ -7,6 +7,8 @@ public class Board
 	
 	public Board(int[][] blocks)
 	{
+		dimension = blocks.length;
+		
 		for (int i = 0; i < dimension; i++)
 		{
 			for (int j = 0; j < dimension; j++)
@@ -14,7 +16,6 @@ public class Board
 				this.blocks[i][j] = blocks[i][j];
 			}	
 		}
-		dimension = blocks.length;
 	}
 
 	public int dimension()
