@@ -37,13 +37,17 @@ public class Board
 
 	public int manhattan()
 	{
-		for (int i = 0; i < )
+		int count = 0;
+		
+		for (int i = 0; i < dimension; i++)
 		{
-			for()
+			for (int j = 0; j < dimension; j++)
 			{
-				
+				count += manhattanDistance(i, j);
 			}
 		}
+		
+		return count;
 	}
 
 	public boolean isGoal()
@@ -118,5 +122,20 @@ public class Board
 		}
 		
 		return dimension * m + n + 1;
+	}
+	
+	private int manhattanDistance(int m, int n)
+	{
+		int thing = blocks[m][n];
+		
+		if (thing != 0)
+		{
+			int row = thing / dimension;
+			int column = thing % dimension;
+			
+			return Math.abs(m - row) + Math.abs(n - column);
+		}
+		
+		return Math.abs(m - 2) + Math.abs(n - 2);
 	}
 }
