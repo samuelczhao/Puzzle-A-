@@ -130,8 +130,8 @@ public class Board
 		
 		if (thing != 0)
 		{
-			int row = thing / dimension;
-			int column = thing % dimension;
+			int row = thing % dimension;
+			int column = thing / dimension;
 			
 			return Math.abs(m - row) + Math.abs(n - column);
 		}
