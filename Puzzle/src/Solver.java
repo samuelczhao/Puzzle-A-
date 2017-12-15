@@ -1,5 +1,26 @@
 public class Solver
 {
+	private static class SearchNode
+	{
+		SearchNode searchNode;
+		Board board;
+		int moves;
+		
+		private SearchNode(SearchNode searchNode, Board board)
+		{
+			this.searchNode = searchNode;
+			for (int i = 0; i < board.dimension; i++)
+			{
+				for (int j = 0; j < board.dimension; j++)
+				{
+					this.board.blocks[i][j] = board.blocks[i][j];
+				}
+			}
+			
+			this.moves = searchNode.moves + 1;
+		}
+	}
+	
 	public Solver(Board initial)
 	{
 		throw new UnsupportedOperationException();
