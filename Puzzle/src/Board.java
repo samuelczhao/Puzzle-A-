@@ -68,7 +68,23 @@ public class Board
 
 	public Board twin()
 	{
-		throw new UnsupportedOperationException();
+		int[][] twin = blocks;
+		
+		for (int i = 0; i < dimension; i++)
+		{
+			for (int j = 0; j < dimension - 1; j++)
+			{
+				if (blocks[i][j] != 0 && blocks[i][j + 1] != 0)
+				{
+					int temp = twin[i][j + 1];
+					twin[i][j + 1] = twin[i][j];
+					twin[i][j] = temp;
+					break;
+				}
+			}
+		}
+		
+		return new Board(twin);
 	}
 
 	public Iterable<Board> neighbors()
