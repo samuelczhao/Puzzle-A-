@@ -75,7 +75,7 @@ public class Board
 			for (int j = 0; j < dimension; j++)
 			{
 				twin[i][j] = blocks[i][j];
-			}
+			}	
 		}
 		
 		
@@ -86,9 +86,11 @@ public class Board
 				if (blocks[i][j] != 0 && blocks[i][j + 1] != 0)
 				{
 					int temp = twin[i][j + 1];
+					
 					twin[i][j + 1] = twin[i][j];
 					twin[i][j] = temp;
-					break;
+					
+					return new Board(twin);
 				}
 			}
 		}
