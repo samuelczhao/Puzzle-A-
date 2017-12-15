@@ -5,17 +5,19 @@ public class Board
 	int[][] blocks;
 	int dimension;
 	
-	public Board(int[][] blocks)
+	public Board(int[][] blocksssss)
 	{
-		dimension = blocks.length;
+		int[][] blocks = new int[blocksssss.length][blocksssss.length];
 		
-		for (int i = 0; i < dimension; i++)
+		for (int i = 0; i < blocks.length; i++)
 		{
-			for (int j = 0; j < dimension; j++)
+			for (int j = 0; j < blocks.length; j++)
 			{
-				this.blocks[i][j] = blocks[i][j];
+				this.blocks[i][j] = blocksssss[i][j];
 			}	
 		}
+		
+		dimension = blocks.length;
 	}
 
 	public int dimension()
