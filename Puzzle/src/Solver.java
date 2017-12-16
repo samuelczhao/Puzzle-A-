@@ -2,20 +2,21 @@ import java.util.ArrayList;
 
 public class Solver
 {
+	private Board init;
 	private Boolean isSolvable;
 	private SearchNode kappa;
 	private SearchNode pride;
 	private MinPQ<SearchNode> oG;
 	private MinPQ<SearchNode> tW;
 	
-	public static class SearchNode implements Comparable
+	private static class SearchNode implements Comparable
 	{
 		private SearchNode searchNode;
 		private Board board;
 		private int moves;
 		private int priority;
 		
-		public SearchNode(SearchNode searchNode, Board board)
+		private SearchNode(SearchNode searchNode, Board board)
 		{
 			this.searchNode = searchNode;
 			
@@ -66,12 +67,24 @@ public class Solver
 		{
 			throw new NullPointerException();
 		}
+
+		int[][] thing = new int[initial.dimension][initial.dimension];
+		
+		for (int i = 0; i < initial.dimension; i++)
+		{
+			for (int j = 0; j < initial.dimension; j++)
+			{
+				thing[i][j] = initial.blocks[i][j];
+			}
+		}
+		
+		init = new Board(thing);
 		
 		oG = new MinPQ<SearchNode>();
 		tW = new MinPQ<SearchNode>();
 		
-		oG.insert(kappa = new SearchNode(null, initial));
-		tW.insert(pride = new SearchNode(null, initial.twin()));
+		oG.insert(kappa = new SearchNode(null, init));
+		tW.insert(pride = new SearchNode(null, init.twin()));
 		
 		while(true)
 		{
