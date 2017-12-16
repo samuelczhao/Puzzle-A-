@@ -90,7 +90,7 @@ public class Solver
 	{
 		if (isSolvable())
 		{
-			return kappa.moves - 1;
+			return kappa.moves;
 		}
 		else
 		{

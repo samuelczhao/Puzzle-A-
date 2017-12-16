@@ -7,18 +7,17 @@ public class Board
 	
 	public Board(int[][] blocksss)
 	{
-		blocks = blocksss;
 		dimension = blocksss.length;
 		
-//		blocks = new int[dimension][dimension];
-//		
-//		for (int i = 0; i < dimension; i++)
-//		{
-//			for(int j = 0; j < dimension; j++)
-//			{
-//				blocks[i][j] = blocksss[i][j];
-//			}
-//		}
+		blocks = new int[dimension][dimension];
+		
+		for (int i = 0; i < dimension; i++)
+		{
+			for(int j = 0; j < dimension; j++)
+			{
+				blocks[i][j] = blocksss[i][j];
+			}
+		}
 	}
 
 	public int dimension()
