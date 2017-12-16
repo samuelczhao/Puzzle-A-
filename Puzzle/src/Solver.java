@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+//goddamn
 public class Solver
 {
 	private Board init;
@@ -114,17 +114,7 @@ public class Solver
 	{
 		if (isSolvable())
 		{
-			//return kappa.moves;
-			int count = 0;
-			ArrayList<Board> solution = new ArrayList<Board>();
-			
-			while (kappa != null)
-			{
-				solution.add(kappa.board);
-				kappa = kappa.searchNode;
-				count++;
-			}
-			return count - 1;
+			return kappa.moves;
 		}
 		else
 		{
