@@ -124,7 +124,7 @@ public class Solver
 				kappa = kappa.searchNode;
 				count++;
 			}
-			return count;
+			return count - 1;
 		}
 		else
 		{
