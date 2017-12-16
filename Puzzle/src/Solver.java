@@ -5,6 +5,7 @@ public class Solver
 	private Board initial;
 	private Boolean isSolvable;
 	private SearchNode kappa;
+	private SearchNode pride;
 	
 	
 	private static class SearchNode implements Comparable
@@ -67,6 +68,11 @@ public class Solver
 		oG.insert(new SearchNode(null, initial));
 		tW.insert(new SearchNode(null, initial.twin()));
 		
+		while(!kappa.board.isGoal() || !pride.board.isGoal())
+		{
+			kappa = solve(kappa, oG);
+			pride = solve(pride, tW);
+		}
 	}
 
 	public boolean isSolvable()
@@ -136,5 +142,20 @@ public class Solver
 				StdOut.println(board);
 			}
 		}
+	}
+	
+	private SearchNode solve(SearchNode node, MinPQ<SearchNode> thing)
+	{
+		Iterable<Board> n = node.board.neighbors();
+
+        for (Board board : n) 
+        {
+            if (node.searchNode == null || !node.searchNode.board.equals(board)) 
+            {
+                thing.insert(new SearchNode(node, board));
+            }
+        }
+
+        return thing.delMin();
 	}
 }
