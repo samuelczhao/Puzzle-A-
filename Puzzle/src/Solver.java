@@ -2,29 +2,23 @@ import java.util.ArrayList;
 
 public class Solver
 {
-	private Board initial;
 	private Boolean isSolvable;
 	private SearchNode kappa;
 	private SearchNode pride;
+	private MinPQ<SearchNode> oG;
+	private MinPQ<SearchNode> tW;
 	
-	
-	private static class SearchNode implements Comparable
+	public static class SearchNode implements Comparable
 	{
 		private SearchNode searchNode;
 		private Board board;
 		private int moves;
 		private int priority;
 		
-		private SearchNode(SearchNode searchNode, Board board)
+		public SearchNode(SearchNode searchNode, Board board)
 		{
 			this.searchNode = searchNode;
-			for (int i = 0; i < board.dimension; i++)
-			{
-				for (int j = 0; j < board.dimension; j++)
-				{
-					this.board.blocks[i][j] = board.blocks[i][j];
-				}
-			}
+			this.board = board;
 			
 			if (searchNode == null)
 			{
@@ -62,15 +56,27 @@ public class Solver
 			throw new NullPointerException();
 		}
 		
-		MinPQ<SearchNode> oG = new MinPQ<SearchNode>();
-		MinPQ<SearchNode> tW = new MinPQ<SearchNode>();
+		oG = new MinPQ<SearchNode>();
+		tW = new MinPQ<SearchNode>();
 		
-		oG.insert(new SearchNode(null, initial));
-		tW.insert(new SearchNode(null, initial.twin()));
+		oG.insert(kappa = new SearchNode(null, initial));
+		tW.insert(pride = new SearchNode(null, initial.twin()));
 		
-		while(!kappa.board.isGoal() || !pride.board.isGoal())
+		while(true)
 		{
+			if (kappa.board.isGoal())
+			{
+				isSolvable = true;
+				break;
+			}
 			kappa = solve(kappa, oG);
+			
+			if (pride.board.isGoal())
+			{
+				isSolvable = false;
+				break;
+			}
+			
 			pride = solve(pride, tW);
 		}
 	}
@@ -94,7 +100,7 @@ public class Solver
 
 	public Iterable<Board> solution()
 	{
-		if (isSolvable())
+		if (!isSolvable())
 		{
 			return null;
 		}
@@ -109,7 +115,27 @@ public class Solver
 		
 		return solution;
 	}
+	
+	private void solverer()
+	{
+		
+	}
+	
+	private SearchNode solve(SearchNode node, MinPQ<SearchNode> thing)
+	{
+		Iterable<Board> neighbors = node.board.neighbors();
 
+        for (Board board : neighbors) 
+        {
+            if (node.searchNode == null || !node.searchNode.board.equals(board)) 
+            {
+                thing.insert(new SearchNode(node, board));
+            }
+        }
+
+        return thing.delMin();
+	}
+	
 	public static void main(String[] args)
 	{
 		// create initial board from file
@@ -142,20 +168,5 @@ public class Solver
 				StdOut.println(board);
 			}
 		}
-	}
-	
-	private SearchNode solve(SearchNode node, MinPQ<SearchNode> thing)
-	{
-		Iterable<Board> n = node.board.neighbors();
-
-        for (Board board : n) 
-        {
-            if (node.searchNode == null || !node.searchNode.board.equals(board)) 
-            {
-                thing.insert(new SearchNode(node, board));
-            }
-        }
-
-        return thing.delMin();
 	}
 }
