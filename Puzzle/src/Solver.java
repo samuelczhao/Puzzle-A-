@@ -1,10 +1,18 @@
+import java.util.ArrayList;
+
 public class Solver
 {
-	private static class SearchNode
+	private Board initial;
+	private Boolean isSolvable;
+	private SearchNode kappa;
+	
+	
+	private static class SearchNode implements Comparable
 	{
-		SearchNode searchNode;
-		Board board;
-		int moves;
+		private SearchNode searchNode;
+		private Board board;
+		private int moves;
+		private int priority;
 		
 		private SearchNode(SearchNode searchNode, Board board)
 		{
@@ -17,28 +25,83 @@ public class Solver
 				}
 			}
 			
-			this.moves = searchNode.moves + 1;
+			if (searchNode == null)
+			{
+				moves = 0;
+			}
+			else
+			{
+				this.moves = searchNode.moves + 1;
+			}
+			
+			priority = board.manhattan() + moves;
+		}
+		
+		public int compareTo(Object thing)
+		{
+			if (priority > ((SearchNode)thing).priority)
+			{
+				return 1;
+			}
+			else if (priority == ((SearchNode)thing).priority)
+			{
+				return 0;
+			}
+			else
+			{
+				return -1;
+			}
 		}
 	}
 	
 	public Solver(Board initial)
 	{
-		throw new UnsupportedOperationException();
+		if (initial == null)
+		{
+			throw new NullPointerException();
+		}
+		
+		MinPQ<SearchNode> oG = new MinPQ<SearchNode>();
+		MinPQ<SearchNode> tW = new MinPQ<SearchNode>();
+		
+		oG.insert(new SearchNode(null, initial));
+		tW.insert(new SearchNode(null, initial.twin()));
+		
 	}
 
 	public boolean isSolvable()
 	{
-		throw new UnsupportedOperationException();
+		return isSolvable;
 	}
 
 	public int moves()
 	{
-		throw new UnsupportedOperationException();
+		if (isSolvable())
+		{
+			return kappa.moves;
+		}
+		else
+		{
+			return -1;
+		}
 	}
 
 	public Iterable<Board> solution()
 	{
-		throw new UnsupportedOperationException();
+		if (isSolvable())
+		{
+			return null;
+		}
+		
+		ArrayList<Board> solution = new ArrayList<Board>();
+		
+		while (kappa != null)
+		{
+			solution.add(kappa.board);
+			kappa = kappa.searchNode;
+		}
+		
+		return solution;
 	}
 
 	public static void main(String[] args)
