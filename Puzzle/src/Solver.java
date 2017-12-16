@@ -18,7 +18,7 @@ public class Solver
 		
 		private SearchNode(SearchNode searchNode, Board board)
 		{
-			this.searchNode = searchNode;
+				this.searchNode = searchNode;
 			
 			int[][] thing = new int[board.dimension][board.dimension];
 			
@@ -114,7 +114,7 @@ public class Solver
 	{
 		if (isSolvable())
 		{
-			return kappa.moves;
+			return kappa.moves + 1;
 		}
 		else
 		{
