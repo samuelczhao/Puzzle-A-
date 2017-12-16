@@ -18,7 +18,18 @@ public class Solver
 		public SearchNode(SearchNode searchNode, Board board)
 		{
 			this.searchNode = searchNode;
-			this.board = board;
+			
+			int[][] thing = new int[board.dimension][board.dimension];
+			
+			for (int i = 0; i < board.dimension; i++)
+			{
+				for (int j = 0; j < board.dimension; j++)
+				{
+					thing[i][j] = board.blocks[i][j];
+				}
+			}
+			
+			this.board = new Board(thing);
 			
 			if (searchNode == null)
 			{
@@ -115,11 +126,7 @@ public class Solver
 		
 		return solution;
 	}
-	
-	private void solverer()
-	{
-		
-	}
+
 	
 	private SearchNode solve(SearchNode node, MinPQ<SearchNode> thing)
 	{
