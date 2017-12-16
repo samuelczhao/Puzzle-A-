@@ -114,7 +114,17 @@ public class Solver
 	{
 		if (isSolvable())
 		{
-			return kappa.moves + 1;
+			//return kappa.moves;
+			int count = 0;
+			ArrayList<Board> solution = new ArrayList<Board>();
+			
+			while (kappa != null)
+			{
+				solution.add(kappa.board);
+				kappa = kappa.searchNode;
+				count++;
+			}
+			return count;
 		}
 		else
 		{
